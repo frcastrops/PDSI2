@@ -1,0 +1,6 @@
+{ 
+  "userEmail": "string", 
+  "userName": "string", 
+  "userPassword": "string", 
+  "userType": "USER_READ_ONLY"
+}
