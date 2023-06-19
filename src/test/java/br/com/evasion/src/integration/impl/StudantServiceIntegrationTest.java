@@ -45,7 +45,7 @@ public class StudantServiceIntegrationTest {
 
     public static Response deleteStudant() {
         String id = "11221BSI210";
-        return given().baseUri("http://localhost:8080/createOrUpdate/studant")
+        return given().baseUri("http://localhost:8080/delete/studant")
                 .contentType(ContentType.JSON)
                 .body(id)
                 .accept("*/*")
