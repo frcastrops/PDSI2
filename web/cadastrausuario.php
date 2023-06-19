@@ -1,4 +1,20 @@
 <?php
+session_start();
+
+// Verifica se o usuário já está logado
+if (!isset($_SESSION['login'])) {
+    header('Location: index.php');  // Se não está logado, redireciona para a página de login
+    exit;
+} else {
+    // Verifica se o usuário tem as permissões necessárias
+    if ($_SESSION['userType'] !== 'USER_ADMINISTRATOR') {
+        echo "<script>";
+        echo "alert('Você não tem permissão para acessar esta página.');";
+        echo "window.location.href = 'relatorioevasao.php';";
+        echo "</script>";
+        exit;
+    }
+}
 $data = array(
   "userEmail" => $_POST['userEmail'],
   "userName" => $_POST['userName'],
@@ -24,19 +40,9 @@ curl_setopt_array($curl, array(
     "Content-Length: " . strlen($data_json)
   ),
 ));
-class RequestResponse
-{
-    public $success;
-    public $destination;
-    function __construct($success, $destination)
-    {
-    $this->success = $success;
-    $this->destination = $destination;
-    }
-}
 
 $response = curl_exec($curl);
-
+$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 $err = curl_error($curl);
 
 curl_close($curl);
@@ -44,10 +50,9 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     if($httpCode == 200) {
-    header('Location: usuarios.php');
-    exit;
+        header('Location: usuarios.php');
+        exit;
     } else {
         echo "<script>";
         echo "alert('Erro ao cadastrar usuário');";

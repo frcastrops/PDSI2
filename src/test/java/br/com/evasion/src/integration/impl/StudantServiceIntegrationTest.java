@@ -25,7 +25,7 @@ public class StudantServiceIntegrationTest {
             assertEquals(200, responseRepportStudant.statusCode());
 
             responseDeleteStudant = deleteStudant();
-            assertEquals(400, responseDeleteStudant.statusCode());
+            assertEquals(200, responseDeleteStudant.statusCode());
 
         } catch (Exception e) {
             throw e;

@@ -38,7 +38,7 @@ public class KNNService {
                         });
                         Instances data = new Instances("TestInstances", attInfo, 11);
                         //TODO o número 3 é o numero de vizinhos para dar match com o novo registro que esta entrando na tabela
-                        Classifier ibk = new IBk(NUM_OF_NEIGHBORS);
+                        Classifier ibk = new IBk();
 
                         validateSample(listStudantDTO);
 

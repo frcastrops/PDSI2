@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Verifica se o usuário já está logado
+if(isset($_SESSION['login'])) {
+    header('Location: relatorioevasao.php');  // Redireciona para a página que preferir
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +25,11 @@
 
 <body>
   <div class="sidebar">
-
     <div class="logo_menu">
-
       <img src="imagens\logo2.png" alt="">
-      </img>
       <br>
       <span class="m">
-        <i class="fas fa-user-tie teste "></i>Sistema de Evasão de Alunos</span>
+        <i class="fas fa-user-tie teste"></i>Sistema de Evasão de Alunos</span>
       <p class="p"></p>
     </div>
 
@@ -31,69 +37,66 @@
       <ul>
         <li>
           <a href="usuarios.php">
-            <i class="fas fa-users "></i>
+            <i class="fas fa-users"></i>
             <span class="nav-item">Usuário</span>
           </a>
         </li>
 
         <li>
           <a href="alunos.php">
-            <i class="fas fa-users "></i>
+            <i class="fas fa-users"></i>
             <span class="nav-item">Alunos</span>
           </a>
         </li>
 
         <li>
           <a href="#">
-            <i class="fas fa-user "></i>
+            <i class="fas fa-user"></i>
             <span class="nav-item">Perfil de acesso</span>
           </a>
         </li>
 
         <li>
           <a href="#">
-            <i class="fas fa-task "></i>
+            <i class="fas fa-task"></i>
             <span class="nav-item">Apredizagem de máquina</span>
           </a>
         </li>
 
         <li>
           <a href="relatoriode.php">
-            <i class="fas fa-chart-bar "></i>
+            <i class="fas fa-chart-bar"></i>
             <span class="nav-item">Relatório de atributos</span>
           </a>
         </li>
 
         <li>
           <a href="relatorioevasao.php" class="active">
-            <i class="fas fa-chart-bar  "></i>
+            <i class="fas fa-chart-bar"></i>
             <span class="nav-item">Relatório de evasão</span>
           </a>
         </li>
 
         <li>
           <a href="suporte.php" class="suporte">
-            <i class="fas fa-question-circle "></i>
+            <i class="fas fa-question-circle"></i>
             <span class="nav-item">Suporte</span>
           </a>
         </li>
-        <p class="versao">versãoo 1.111</p>
+        <p class="versao">versão 1.111</p>
       </ul>
     </nav>
-
-
-
   </div>
 
   <section>
     <h2>Contato</h2>
     <form action="https://api.staticforms.xyz/submit" method="post">
-      <label>Nome</label>
-      <input type="text" name="name" placeholder="Digite seu nome" autocomplete="off" required>
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Digite seu email" autocomplete="off" required>
-      <label>mensagem do erro detalhada</label>
-      <textarea name="message" cols="30" rows="10" placeholder="Digite sua mensagem" required></textarea>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" placeholder="Digite seu nome" autocomplete="off" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu email" autocomplete="off" required>
+      <label for="message">Mensagem do erro detalhada</label>
+      <textarea id="message" name="message" cols="30" rows="10" placeholder="Digite sua mensagem" required></textarea>
       <button type="submit">Enviar</button>
 
       <input type="hidden" name="accessKey" value="042be0d3-84fa-4ae8-aaed-2434cda72cac">

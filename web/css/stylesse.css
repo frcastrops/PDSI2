@@ -212,7 +212,7 @@ a:hover {
 }
 
 
-@media (max-width:860px) {
+@media (max-width: 860px) {
     .sidebar {
         height: auto;
         width: 300px;

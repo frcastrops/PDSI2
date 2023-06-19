@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+// Verifica se o usuário já está logado
+if(!isset($_SESSION['login'])) {
+    header('Location: index.php');  // Se não está logado, redireciona para a página de login
+    exit;
+} else {
+    // Verifica se o usuário tem as permissões necessárias
+    if($_SESSION['userType'] !== 'USER' && $_SESSION['userType'] !== 'USER_ADMINISTRATOR') {
+        echo "<script>";
+        echo "alert('Você não tem permissão para acessar esta página.');";
+        echo "window.location.href = 'relatorioevasao.php';";
+        echo "</script>";
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,128 +33,101 @@
 
 <body>
   <div class="sidebar">
-
     <div class="logo_menu">
-
-      <img src="imagens\logo2.png" alt="">
+      <img src="imagens/logo2.png" alt="">
       </img>
       <br>
       <span class="m">
-        <i class="fas fa-user-tie teste "></i>Sistema de Evasão de Alunos</span>
+        <i class="fas fa-user-tie teste"></i>Sistema de Evasão de Alunos</span>
       <p class="p"></p>
     </div>
-
     <nav>
       <ul>
         <li>
           <a href="usuarios.php">
-            <i class="fas fa-users "></i>
+            <i class="fas fa-users"></i>
             <span class="nav-item">Usuário</span>
           </a>
         </li>
-
         <li>
           <a href="alunos.php">
-            <i class="fas fa-users "></i>
+            <i class="fas fa-users"></i>
             <span class="nav-item">Alunos</span>
           </a>
         </li>
-
         <li>
           <a href="#">
-            <i class="fas fa-user "></i>
+            <i class="fas fa-user"></i>
             <span class="nav-item">Perfil de acesso</span>
           </a>
         </li>
-
         <li>
           <a href="#">
-            <i class="fas fa-task "></i>
-            <span class="nav-item">Apredizagem de máquina</span>
+            <i class="fas fa-task"></i>
+            <span class="nav-item">Aprendizagem de máquina</span>
           </a>
         </li>
-
         <li>
           <a href="relatoriode.php">
-            <i class="fas fa-chart-bar "></i>
+            <i class="fas fa-chart-bar"></i>
             <span class="nav-item">Relatório de atributos</span>
           </a>
         </li>
-
         <li>
           <a href="relatorioevasao.php" class="active">
-            <i class="fas fa-chart-bar  "></i>
+            <i class="fas fa-chart-bar"></i>
             <span class="nav-item">Relatório de evasão</span>
           </a>
         </li>
-
         <li>
           <a href="suporte.php" class="suporte">
-            <i class="fas fa-question-circle "></i>
+            <i class="fas fa-question-circle"></i>
             <span class="nav-item">Suporte</span>
           </a>
         </li>
-        <p class="versao">versãoo 1.111</p>
+        <p class="versao">versão 1.111</p>
       </ul>
     </nav>
-
-
-
   </div>
-  <!---Menu finalizado-->
-
-
 
   <div class="container">
     <div class="header">
       <div class="editar">
         <span class="red">Lista de Alunos Cadastrados</span>
-        <button onclick="location.reload()" id="new" class="pls"> Atualizar Lista</button>
-        <i class=" fa fa-bell"></i>
+        <button onclick="location.reload()" id="new" class="pls">Atualizar Lista</button>
+        <i class="fa fa-bell"></i>
       </div>
-
     </div>
 
-
     <div class="divTable">
-
       <div class="tests">
         <div class="sub">
-          <p>Mostrar até </p>
+          <p>Mostrar até</p>
           <select id="number" name="5" class="he">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-
-
           </select>
           <p class="ols">Alunos</p>
           <p>Curso</p>
-
-
           <select id="tipo" name="tipo" class="he">
             <option value="1">BSI</option>
             <option value="2">BCC</option>
           </select>
-
-          <p>Periodo</p>
-
+          <p>Período</p>
           <select id="number" name="5" class="he">
             <option value="1">Todos</option>
             <option value="2">1</option>
             <option value="3">2</option>
             <option value="4">3</option>
-
           </select>
           <p>Nome</p>
           <input class="teste12" type="text">
           <i class="fa fa-search plss"></i>
         </div>
       </div>
-
-
 
       <table>
         <thead>
@@ -146,7 +137,7 @@
             <th>Matrícula</th>
             <th>E-mail</th>
             <th class="acao">Editar</th>
-            <th class="acao">Excluir<br></th>
+            <th class="acao">Excluir</th>
           </tr>
         </thead>
         <tbody>
@@ -154,15 +145,11 @@
         </tbody>
       </table>
     </div>
-
-
   </div>
+
   <div class="clear"></div>
 
-  <script src="script.js">
-
-
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
